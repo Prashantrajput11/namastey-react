@@ -1,0 +1,24 @@
+*{
+  margin : 0;
+  box-sizing: border-box;
+  
+}
+
+.header{
+  background-color: #1abc9c;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px
+}
+
+input[type="text"]{
+  border-radius:  8px;
+  border: none;
+  width: 244px;
+  padding: 10px 10px
+}
+
+.icon-container:hover{
+  color: #666666;
+}
