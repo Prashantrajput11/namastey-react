@@ -1,37 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import { FaUserAlt } from "react-icons/fa";
+import { Provider } from "react-redux";
+import store from "./src/store/store";
 
-// const heading = React.createElement(
-//   'div', {},
-//   React.createElement(
-//     'h1', {}, React.createElement('p', {id: 'title'}, 'this is react')
-//     )
-//   )
-// console.log({heading});
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-const Header = () => {
-	const [text, setText] = useState("");
+import Body from "./src/Body";
+import Cart from "./src/Cart";
+import Header from "./src/Header";
+
+const AppLayout = () => {
 	return (
-		<div className="header">
-			<LeftContent />
-			<input type="text" placeholder="search..." value={text}></input>
-			<RightContent />
-		</div>
+		<>
+			<Provider store={store}>
+				<BrowserRouter>
+					<Header />
+					<Routes>
+						<Route path="/" element={<Body />}></Route>
+						<Route path="/cart" element={<Cart />}></Route>
+					</Routes>
+				</BrowserRouter>
+			</Provider>
+		</>
 	);
 };
 
-const LeftContent = () => {
-	return <h1>BQ</h1>;
-};
-const RightContent = () => {
-	return (
-		<FaUserAlt
-			className="icon-container"
-			style={{ height: "24px", width: "24px" }}
-		/>
-	);
-};
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<Header />);
+root.render(<AppLayout />);
