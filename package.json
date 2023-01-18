@@ -4,7 +4,8 @@
 	"description": "this is a react course",
 	"main": "app.js",
 	"scripts": {
-		"test": "jest"
+		"test": "jest",
+		"start": "parcel index.html"
 	},
 	"author": "Prashant Tanwar",
 	"license": "ISC",
