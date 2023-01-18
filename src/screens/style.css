@@ -1,0 +1,219 @@
+@import url("https://fonts.googleapis.com/css2?family=Coiny&display=swap");
+
+.restaurantDetailscontainer {
+	background-color: #171a29;
+	width: 100%;
+	/* height: 600px; */
+	padding: 32px 48px;
+	display: flex;
+	align-items: center;
+	/* margin: 0 55px; */
+	/* position: fixed;
+	top: 90px; */
+}
+
+.restaurantDetails {
+	margin-right: 55px;
+	margin-left: 55px;
+	flex: 2;
+}
+
+.restaurantDetailsImage {
+	height: 165px;
+	width: 254px;
+}
+
+.restaurantDetailsOfferContainer {
+	border: 2px solid white;
+	width: 300px;
+	word-wrap: break-word;
+	overflow: hidden;
+}
+
+.restaurantDetailsFooter {
+	display: flex;
+	margin-top: 12px;
+}
+
+.verticalSeparator {
+	border: 0.6px solid white;
+	height: 40px;
+	margin-left: 35px;
+	margin-right: 35px;
+	/* margin-top: 12px; */
+}
+
+.restaurantDetailsOfferContainer {
+	padding: 34px;
+}
+
+.foodCardLink {
+	list-style: none;
+}
+
+.recommendedSectionContainer {
+	display: flex;
+	/* flex: 1; */
+	justify-content: space-between;
+	margin: 36px;
+	/* border: 1px solid red; */
+}
+
+.recommendedItemImageContainer {
+	height: 100px;
+	width: 100px;
+	/* object-fit: initial; */
+	/* border: 1px solid red; */
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.recommendedItemImageContainer img {
+	height: 100%;
+	width: 100%;
+	margin-left: 24px;
+}
+
+.addCtaCart {
+	position: absolute;
+	/* top: 20px; */
+	bottom: -10px;
+	left: 60%;
+	transform: translateX(-50%);
+	/* min-height: 36px; */
+	border: none;
+	background-color: #d4d5d9;
+	padding: 6px 20px;
+	border-radius: 2px;
+	color: green;
+}
+
+.recommendedItemsContainer {
+	border-left: 1px solid #d4d5d9;
+	padding: 0 32px;
+}
+
+.horizontalSeparator {
+	border: 0.6px solid #d4d5d9;
+	margin: 32px 0;
+	width: 100%;
+}
+
+.recommendedItemsHeader {
+	margin-bottom: 32px;
+}
+
+.recommendedListContainer {
+	/* border: 1px solid green; */
+	flex: 1;
+	display: flex;
+	align-items: flex-end;
+	flex-direction: column;
+	padding-top: 24px;
+	padding-right: 24px;
+
+	/* justify-content: center; */
+}
+
+.recommendedListContainer p {
+	/* border: 1px solid red; */
+	margin-bottom: 16px;
+}
+
+.itemDescription {
+	word-break: break-word;
+	width: 400px;
+	/* border: 1px solid red; */
+	color: #686b78;
+	font-size: 14px;
+	margin-top: 16px;
+}
+
+.cartDetailsContainer {
+	/* border: 1px solid green; */
+	flex: 1;
+	/* display: flex; */
+	justify-content: flex-start;
+	padding: 10px 32px;
+}
+
+.subTotalContainer {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 44px;
+}
+
+.checkoutCta {
+	background-color: #60b246;
+	border: none;
+	padding: 10px 20px;
+	width: 100%;
+	margin-top: 32px;
+	color: #ffffff;
+}
+
+.checkoutCta:hover {
+	background-color: #90c97e;
+}
+
+li {
+	list-style-type: none;
+}
+
+a {
+	text-decoration: none;
+	color: #ffffff;
+}
+
+.helpScreenContainer {
+	background-color: #37718e;
+	height: 90vh;
+	width: 100%;
+	padding: 20px;
+}
+
+.accordionContainer {
+	background-color: #ffffff;
+	/* border-bottom: 1px solid red; */
+	padding: 20px 20px;
+	margin-top: 32px;
+}
+
+.restaurantOffersHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #005062;
+	height: 40vh;
+
+	padding: 20px 32px;
+}
+
+.couponCardContainer {
+	display: flex;
+	/* flex: 1; */
+	/* width: 200px; */
+	/* margin-right: 16px; */
+	/* justify-content: space-around; */
+	flex-wrap: wrap;
+}
+
+.couponCardBody {
+	border: 1px solid #d4d5d9;
+	/* display: flex; */
+	width: 300px;
+	margin: 20px;
+	padding: 16px;
+}
+
+.outlineCta {
+	border: 1px solid #e67e22;
+	padding: 6px 12px;
+	background-color: #ffffff;
+	margin-top: 6px;
+}
+
+.outlineCta:hover {
+	box-shadow: 0px 2px 8px #d0a37b;
+}

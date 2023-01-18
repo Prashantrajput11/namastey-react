@@ -1,37 +1,65 @@
-import React, { useState } from "react";
+// React imports
+import React from "react";
 import ReactDOM from "react-dom/client";
+import {
+	createBrowserRouter,
+	Router,
+	RouterProvider,
+	Outlet,
+} from "react-router-dom";
+
+// Icon imports
 import { FaUserAlt } from "react-icons/fa";
 
-// const heading = React.createElement(
-//   'div', {},
-//   React.createElement(
-//     'h1', {}, React.createElement('p', {id: 'title'}, 'this is react')
-//     )
-//   )
-// console.log({heading});
+// Other component imports
+import Help from "./src/components/Help";
+import Error from "./src/components/Error";
+import LandingScreen from "./src/screens/LandingScreen";
+import HelpScreen from "./src/screens/HelpScreen";
+import OffersScreen from "./src/screens/OffersScreen";
+import Header from "./src/components/Header";
+import RestaurantMenuScreen from "./src/screens/RestaurantMenuScreen";
+import SignInScreen from "./src/screens/SignInScreen";
 
-const Header = () => {
-	const [text, setText] = useState("");
+// component
+const AppLayout = () => {
 	return (
-		<div className="header">
-			<LeftContent />
-			<input type="text" placeholder="search..." value={text}></input>
-			<RightContent />
-		</div>
+		<>
+			<Header />
+			<Outlet />
+		</>
 	);
 };
+const appRoute = createBrowserRouter([
+	{
+		path: "/",
+		element: <AppLayout />,
+		errorElement: <Error />,
+		children: [
+			{
+				path: "/",
+				element: <LandingScreen />,
+			},
+			{
+				path: "/help",
+				element: <HelpScreen />,
+			},
+			{
+				path: "/offers",
+				element: <OffersScreen />,
+			},
+			{
+				path: "/sign",
+				element: <SignInScreen />,
+			},
+			{
+				path: "/restaurant/:id",
+				element: <RestaurantMenuScreen />,
+			},
+		],
+	},
+]);
 
-const LeftContent = () => {
-	return <h1>BQ</h1>;
-};
-const RightContent = () => {
-	return (
-		<FaUserAlt
-			className="icon-container"
-			style={{ height: "24px", width: "24px" }}
-		/>
-	);
-};
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<Header />);
+root.render(<RouterProvider router={appRoute} />);
