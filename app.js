@@ -1,31 +1,65 @@
+// React imports
 import React from "react";
 import ReactDOM from "react-dom/client";
+import {
+	createBrowserRouter,
+	Router,
+	RouterProvider,
+	Outlet,
+} from "react-router-dom";
+
+// Icon imports
 import { FaUserAlt } from "react-icons/fa";
-import { Provider } from "react-redux";
-import store from "./src/store/store";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+// Other component imports
+import Help from "./src/components/Help";
+import Error from "./src/components/Error";
+import LandingScreen from "./src/screens/LandingScreen";
+import HelpScreen from "./src/screens/HelpScreen";
+import OffersScreen from "./src/screens/OffersScreen";
+import Header from "./src/components/Header";
+import RestaurantMenuScreen from "./src/screens/RestaurantMenuScreen";
+import SignInScreen from "./src/screens/SignInScreen";
 
-import Body from "./src/Body";
-import Cart from "./src/Cart";
-import Header from "./src/Header";
-
+// component
 const AppLayout = () => {
 	return (
 		<>
-			<Provider store={store}>
-				<BrowserRouter>
-					<Header />
-					<Routes>
-						<Route path="/" element={<Body />}></Route>
-						<Route path="/cart" element={<Cart />}></Route>
-					</Routes>
-				</BrowserRouter>
-			</Provider>
+			<Header />
+			<Outlet />
 		</>
 	);
 };
+const appRoute = createBrowserRouter([
+	{
+		path: "/",
+		element: <AppLayout />,
+		errorElement: <Error />,
+		children: [
+			{
+				path: "/",
+				element: <LandingScreen />,
+			},
+			{
+				path: "/help",
+				element: <HelpScreen />,
+			},
+			{
+				path: "/offers",
+				element: <OffersScreen />,
+			},
+			{
+				path: "/sign",
+				element: <SignInScreen />,
+			},
+			{
+				path: "/restaurant/:id",
+				element: <RestaurantMenuScreen />,
+			},
+		],
+	},
+]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<AppLayout />);
+root.render(<RouterProvider router={appRoute} />);

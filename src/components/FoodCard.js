@@ -2,12 +2,9 @@ import React from "react";
 
 import { FaStar } from "react-icons/fa";
 
-import { restrautList, URL } from "./config.js";
+import { restrautList, URL } from "../config.js";
 
-import { addProduct } from "./store/cartSlice.js";
-import { useDispatch } from "react-redux";
-
-export default function Food({
+export default function FoodCard({
 	name,
 	cloudinaryImageId,
 	cuisines,
@@ -16,11 +13,6 @@ export default function Food({
 	costForTwoString,
 	id,
 }) {
-	const dispatch = useDispatch();
-
-	function handleAddProduct(name, cloudinaryImageId, cuisines, id) {
-		dispatch(addProduct({ name, cloudinaryImageId, cuisines, id }));
-	}
 	return (
 		<div className="foodContainer">
 			<img src={URL + cloudinaryImageId} className="foodImage" />
@@ -51,16 +43,7 @@ export default function Food({
 					marginTop: 16,
 				}}
 			></div>
-			<div className="addCtaContainer">
-				<button
-					className="addCta"
-					onClick={() =>
-						handleAddProduct(name, cloudinaryImageId, cuisines, id)
-					}
-				>
-					Add
-				</button>
-			</div>
+			<div className="addCtaContainer"></div>
 		</div>
 	);
 }
