@@ -2,10 +2,8 @@
 	"name": "namastey-react",
 	"version": "1.0.0",
 	"description": "this is a react course",
-	"main": "app.js",
 	"scripts": {
-		"test": "jest",
-		"start": "parcel index.html"
+		"test": "jest"
 	},
 	"author": "Prashant Tanwar",
 	"license": "ISC",
