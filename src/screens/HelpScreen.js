@@ -1,5 +1,5 @@
 import React from "react";
-import Accordion from "../components/aCCORDION.JS";
+import Accordion from "../components/Accordion.js";
 
 const HelpScreen = () => {
 	let FAQ = [

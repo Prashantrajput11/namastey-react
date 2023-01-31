@@ -3,10 +3,16 @@ import CouponCard from "../components/CouponCard";
 import "../theme/CommonStyle.css";
 import { URL } from "../config";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import Tab from "../components/Tab";
 
 const OffersScreen = () => {
 	const [offers, setOffers] = useState(null);
 	const [copy, setCopy] = useState({ text: "", isCopied: false });
+
+	let tab_list_options = [
+		{ tagName: "Restaurant", id: "01" },
+		{ tagName: "offer", id: "02" },
+	];
 	useEffect(() => {
 		getOffersList();
 	}, []);
@@ -42,6 +48,10 @@ const OffersScreen = () => {
 					alt=""
 					style={{ height: "200px", width: "200px" }}
 				/>
+			</div>
+
+			<div class="border-b-2 border-slate-100	">
+				<Tab tabOptions={tab_list_options} />
 			</div>
 
 			<div className="couponCardContainer">

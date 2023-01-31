@@ -22,6 +22,7 @@ import RestaurantMenuScreen from "./src/screens/RestaurantMenuScreen";
 import SignInScreen from "./src/screens/SignInScreen";
 
 // component
+
 const AppLayout = () => {
 	return (
 		<>
