@@ -15,6 +15,7 @@ import "../theme/CommonStyle.css";
 // Icon imports
 import { FaStar } from "react-icons/fa";
 import Header from "../components/Header";
+import useOnline from "../utils/hooks/useOnline";
 
 // Component Body
 const LandingScreen = () => {
@@ -23,6 +24,11 @@ const LandingScreen = () => {
 	const [allRestaurants, setAllRestaurants] = useState([]);
 	const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 	const [error, setError] = useState("");
+
+	// check user network status
+	const isOnline = useOnline();
+
+	console.log("ison", isOnline);
 
 	// will get called only once
 	useEffect(() => {
@@ -53,6 +59,16 @@ const LandingScreen = () => {
 	function searchHandler(searchText, restaurants) {
 		return restaurants.filter((restaurant) =>
 			restaurant.data.name.toLowerCase().includes(searchText.toLowerCase())
+		);
+	}
+	// const isOnline = useOnline();
+
+	if (!isOnline) {
+		return (
+			<div className="bg-gray-600 p-4 max-w-fit m-4 rounded-sm text-white">
+				<p>NETWORK CONNECTION ERROR</p>
+				<h4>Please, check your internet connection!!!</h4>
+			</div>
 		);
 	}
 

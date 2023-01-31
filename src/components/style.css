@@ -43,7 +43,7 @@
 	width: 80%;
 	background-color: #ffffff;
 	/* border: 2px solid red; */
-	box-shadow: 2px 2px 14px rgb(142, 138, 138);
+	box-shadow: 2px 2px 14px #8e8a8a;
 	margin: 24px auto;
 	display: flex;
 	flex: 1;
