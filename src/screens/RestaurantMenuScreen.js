@@ -13,28 +13,17 @@ import IconWithRightLabel from "../components/IconWithRightLabel";
 // Icons imports
 import { FaStar } from "react-icons/fa";
 import { TbDiscount2 } from "react-icons/tb";
+import useRestaurant from "../utils/hooks/useRestaurant";
 
 // RestaurantMenuScreen
 const RestaurantMenuScreen = () => {
+	// extract restaurant id
 	const { id } = useParams();
 
-	const [restaurant, setRestaurant] = useState(null);
+	const restaurant = useRestaurant(id);
 
-	useEffect(() => {
-		getRestaurantmenu();
-	}, []);
-
-	const getRestaurantmenu = async () => {
-		const response = await fetch(
-			`https://www.swiggy.com/dapi/menu/v4/full?lat=28.3667854&lng=77.06939799999999&menuId=${id}`
-		);
-
-		const json = await response.json();
-		setRestaurant(json.data);
-		console.log("data", json);
-	};
-
-	function getUniqueCategories() {
+	// Get unique meal categories
+	function getUniqueMealCategories() {
 		let showUniqueCategories = [];
 
 		let array = Object.values(restaurant?.menu.items);
@@ -46,6 +35,8 @@ const RestaurantMenuScreen = () => {
 
 		return showUniqueCategories;
 	}
+
+	//return
 	return (
 		restaurant != null && (
 			<>

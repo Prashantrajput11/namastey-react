@@ -100,7 +100,7 @@ const LandingScreen = () => {
 			</div>
 			{error}
 
-			<div style={{ display: "flex", flexWrap: "wrap" }}>
+			<div className="flex flex-wrap items-center justify-center">
 				{filteredRestaurants.length === 0 ? (
 					<Shimmer />
 				) : (
