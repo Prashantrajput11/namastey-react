@@ -23,7 +23,7 @@ import { useSelector } from "react-redux";
 // Third party librarires
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Cta from "../components/cta";
+import Cta from "../components/Cta";
 import FoodType from "../components/FoodType";
 
 // Custom Hooks imports
