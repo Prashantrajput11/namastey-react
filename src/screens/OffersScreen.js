@@ -1,34 +1,30 @@
+// React imports
 import React, { useState, useEffect } from "react";
 import CouponCard from "../components/CouponCard";
+
+// Style imports
 import "../theme/CommonStyle.css";
+
+// Config imports
 import { URL } from "../config";
+
+// External libraries imports
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import Tab from "../components/Tab";
+import useOffers from "../utils/hooks/useOffers";
 
 const OffersScreen = () => {
-	const [offers, setOffers] = useState(null);
 	const [copy, setCopy] = useState({ text: "", isCopied: false });
 
 	let tab_list_options = [
 		{ tagName: "Restaurant", id: "01" },
 		{ tagName: "offer", id: "02" },
 	];
-	useEffect(() => {
-		getOffersList();
-	}, []);
 
-	const getOffersList = async () => {
-		let response = await fetch(
-			"https://www.swiggy.com/dapi/offers/payment?lat=28.3667854&lng=77.06939799999999&offset=0"
-		);
+	// Get offers list
+	const offers = useOffers();
 
-		let json = await response.json();
-
-		setOffers(json.data.cards);
-
-		console.log(json.data.cards);
-	};
-
+	// return
 	return (
 		<div className="restaurantOffersContainer">
 			<div className="restaurantOffersHeader">

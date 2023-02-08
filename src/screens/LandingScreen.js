@@ -24,6 +24,41 @@ const LandingScreen = () => {
 	const [allRestaurants, setAllRestaurants] = useState([]);
 	const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 	const [error, setError] = useState("");
+	console.log(allRestaurants);
+	// handle Sort By Rating
+	function sortOnHighToLowRating() {
+		let sorted_list_rating =
+			filteredRestaurants &&
+			filteredRestaurants.sort((a, b) => b.data.avgRating - a.data.avgRating);
+		setFilteredRestaurants([...sorted_list_rating]);
+	}
+
+	//handle  sort by delivery time
+
+	function sortOnDeliveryTime() {
+		let sorted_list_delivery_time =
+			filteredRestaurants &&
+			filteredRestaurants.sort(
+				(a, b) => a.data.deliveryTime - b.data.deliveryTime
+			);
+		setFilteredRestaurants([...sorted_list_delivery_time]);
+	}
+
+	// handle sort by cost ( high to low)
+
+	function sortPriceHighTolow() {
+		let sorted_list_price_high_to_low =
+			filteredRestaurants &&
+			filteredRestaurants.sort((a, b) => b.data.costForTwo - a.data.costForTwo);
+		setFilteredRestaurants([...sorted_list_price_high_to_low]);
+	}
+
+	function sortPriceLowToHigh() {
+		let sorted_list_price_low_to_high =
+			filteredRestaurants &&
+			filteredRestaurants.sort((a, b) => a.data.costForTwo - b.data.costForTwo);
+		setFilteredRestaurants([...sorted_list_price_low_to_high]);
+	}
 
 	// check user network status
 	const isOnline = useOnline();
@@ -76,7 +111,7 @@ const LandingScreen = () => {
 		<>
 			<SearchInput
 				searchText={searchText}
-				placeholder="Search for restaurants amd food.."
+				placeholder="Search for restaurants.."
 				type="text"
 				value={searchText}
 				onChange={(e) => {
@@ -94,13 +129,50 @@ const LandingScreen = () => {
 			{/* slider component */}
 
 			<Slider />
-			<div className="m_t_24 p_h_16">
-				<h2>total restaurant: {allRestaurants.length}</h2>
-				<div style={{ border: "0.2px solid #b6b6b6", marginTop: "20px" }}></div>
+			<div className="m_t_24 px-24 flex justify-between">
+				<h2 className="font-bold text-2xl">
+					{allRestaurants.length} Restaurants
+				</h2>
+
+				<div>
+					<button
+						className="border-yellow-500 border ml-2 px-6"
+						onClick={() => sortOnHighToLowRating()}
+					>
+						<p className="hover:text-slate-600 transition-all">Rating</p>
+					</button>
+					<button
+						className="border-yellow-500 border ml-2 px-6"
+						onClick={() => sortOnDeliveryTime()}
+					>
+						<p className="hover:text-slate-600 transition-all">Delivery Time</p>
+					</button>
+
+					<button
+						className="border-yellow-500 border ml-2 px-6"
+						onClick={() => sortPriceHighTolow()}
+					>
+						<p className="hover:text-slate-600 transition-all">
+							{" "}
+							Cost: High To Low
+						</p>
+					</button>
+
+					<button
+						className="border-yellow-500 border ml-2 px-6"
+						onClick={() => sortPriceLowToHigh()}
+					>
+						<p className="hover:text-slate-600 transition-all">
+							Cost: Low To High
+						</p>
+					</button>
+				</div>
 			</div>
+			<div style={{ border: "0.2px solid #b6b6b6", marginTop: "20px" }}></div>
+
 			{error}
 
-			<div style={{ display: "flex", flexWrap: "wrap" }}>
+			<div className="flex flex-wrap items-center justify-center">
 				{filteredRestaurants.length === 0 ? (
 					<Shimmer />
 				) : (

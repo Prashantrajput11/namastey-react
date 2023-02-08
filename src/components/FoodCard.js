@@ -13,26 +13,28 @@ export default function FoodCard({
 	costForTwoString,
 	id,
 }) {
+	console.log(cuisines);
 	return (
-		<div className="foodContainer">
+		<div className=" w-72 m-2 p-2 hover:scale-110 delay-400 transition-all">
 			<img src={URL + cloudinaryImageId} className="foodImage" />
 
-			<div style={{ padding: "0 16px" }}>
-				<p style={{ fontWeight: "bold", marginBottom: "4px" }}>{name}</p>
-				<p style={{ marginBottom: "16px", height: "40px" }}>
-					{cuisines.join(", ")}
-				</p>
+			<div className="py-2">
+				<p className="font-semibold">{name}</p>
+				<p className="font-thin text-xs">{cuisines.join(", ")}</p>
 			</div>
 
-			<div className="tag">
-				<div className="starRating">
+			<div className="flex items-center justify-center">
+				<div
+					className=" bg-emerald-300 flex   items-center justify-center text-white py-1 px-1 font-bold text-xs"
+					style={{ backgroundColor: "#48c479" }}
+				>
 					<FaStar color="white" />
-					<span style={{ marginLeft: "6px" }}>{avgRating}</span>
+					<span className="ml-2">{avgRating}</span>
 				</div>
-				<p>.</p>
-				<p>{deliveryTime + "minutes"}</p>
-				<p>.</p>
-				<p>{costForTwoString}</p>
+				<p className="ml-2 mr-2">-</p>
+				<p className="font-thin text-xs">{deliveryTime + "minutes"}</p>
+				<p className="ml-2 mr-2 ">-</p>
+				<p className="font-thin text-xs">{costForTwoString}</p>
 			</div>
 
 			<div

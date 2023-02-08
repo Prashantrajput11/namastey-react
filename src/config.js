@@ -1,3 +1,5 @@
+import { createClient } from "@supabase/supabase-js";
+
 export const restrautList = [
 	{
 		type: "restaurant",
@@ -729,6 +731,37 @@ export const restrautList = [
 		subtype: "basic",
 	},
 ];
-
+export const USERS_ADDRESS_LIST = [
+	{
+		id: "01",
+		addressType: "Home",
+		addressDescription: "D block , Ryan enclave",
+		deliveryTime: "36 mins",
+	},
+	{
+		id: "02",
+		addressType: "Add New Address",
+		addressDescription: "D block , Ryan enclave",
+		deliveryTime: "36 mins",
+	},
+	{
+		id: "03",
+		addressType: "Work",
+		addressDescription: "Niit, Gurugram",
+		deliveryTime: "36 mins",
+	},
+];
 export const URL =
 	"https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/";
+
+const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
+
+console.log({ supabaseUrl });
+
+const supabaseKey = process.env.REACT_APP_SUPABASE_ANON;
+
+console.log({ supabaseKey });
+
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+export default supabase;

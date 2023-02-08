@@ -81,13 +81,6 @@ input[type="text"] {
 	align-items: center;
 }
 
-.starRating {
-	background-color: #2ecc71;
-	padding: 0 5px;
-	color: #fff;
-	align-items: center;
-}
-
 .addCtaContainer {
 	display: flex;
 	align-items: center;

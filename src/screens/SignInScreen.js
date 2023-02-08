@@ -1,24 +1,34 @@
-"use strict";
+import React from "react";
 
-import { Component } from "react";
+import supabase from "../config";
 
-class SignInScreen extends Component {
-	constructor(props) {
-		super(props);
+import { useNavigate } from "react-router-dom";
 
-		this.state = {
-			count: 0,
-		};
+const SignInScreen = () => {
+	console.log({ supabase });
+
+	// Sign in user
+	supabase.auth.onAuthStateChange(async (event) => {
+		event !== "SIGNED_OUT" ? useNavigate("/") : useNavigate("/sign");
+	});
+
+	async function signInWithGoogle() {
+		const { data, error } = await supabase.auth.signInWithOAuth({
+			provider: "google",
+		});
 	}
 
-	render() {
-		return (
-			<div>
-				<h1>this is class component : {this.state.count}</h1>
-				<button onClick={this.setState({ count: 1 })}></button>
-			</div>
-		);
-	}
-}
+	return (
+		<div className="w-fit mx-auto my-60 bg-neutral-100  px-4 py-2 flex item-center justify-center hover:bg-neutral-400 transition all">
+			<img
+				src="https://lh3.googleusercontent.com/COxitqgJr1sJnIDe8-jiKhxDx1FrYbtRHKJ9z_hELisAlapwE9LUPh6fcXIfb5vwpbMl4xl9H9TRFPc5NOO8Sb3VSgIBrfRYvW6cUA"
+				alt=""
+				srcset=""
+				className="h-6 mr-2"
+			/>
+			<button onClick={() => signInWithGoogle()}>login with Google</button>
+		</div>
+	);
+};
 
 export default SignInScreen;
