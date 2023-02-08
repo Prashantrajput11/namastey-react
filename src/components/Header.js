@@ -1,6 +1,6 @@
 // React Imports
 import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 //Icons Import
 import { TbDiscount2 } from "react-icons/tb";
@@ -9,12 +9,18 @@ import { FiUser } from "react-icons/fi";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import IconWithRightLabel from "./IconWithRightLabel";
 
+import useGetUser from "../utils/hooks/useGetUser";
+
 // other config imports
 
 // Component Header
 const Header = () => {
 	// init local state
 	const [showDrawer, setShowDrawer] = useState(false);
+
+	const { user, signOutUser, deleteUser } = useGetUser();
+
+	const navigate = useNavigate();
 
 	// active style for header
 	let activeStyle = {
@@ -56,29 +62,66 @@ const Header = () => {
 
 				<li>
 					<NavLink
-						to="/sign"
+						// to="/sign"
+						to={Object.keys(user).length === 0 && "/sign"}
 						style={({ isActive }) => (isActive ? activeStyle : null)}
 					>
 						<IconWithRightLabel
 							isDrawerOpen={showDrawer}
 							onClick={() => setShowDrawer(!showDrawer)}
-							text="Sign In"
+							text={
+								Object.keys(user).length === 0
+									? "sign in "
+									: user?.email?.slice(0, 5)
+							}
+							// text={"Sign In"}
 							icon={<FiUser style={{ height: "24px", width: "24px" }} />}
 						/>
 					</NavLink>
 				</li>
 
+				{showDrawer && Object.keys(user).length !== 0 && (
+					<div
+						style={{
+							position: "absolute",
+							top: 60,
+							right: 450,
+							backgroundColor: "orange",
+							padding: 16,
+							borderRadius: 4,
+						}}
+					>
+						<p
+							className="hover:cursor-pointer"
+							onClick={() => navigate("/fav")}
+						>
+							Favourite
+						</p>
+						<p className="hover:cursor-pointer" onClick={() => signOutUser()}>
+							Logout
+						</p>
+					</div>
+				)}
+
 				<li>
-					<IconWithRightLabel
-						text="Cart"
-						icon={
-							<HiOutlineShoppingCart
-								style={{ height: "24px", width: "24px" }}
-							/>
-						}
-					/>
+					<NavLink
+						to="/cart"
+						style={({ isActive }) => (isActive ? activeStyle : null)}
+					>
+						<IconWithRightLabel
+							text="Cart"
+							icon={
+								<HiOutlineShoppingCart
+									style={{ height: "24px", width: "24px" }}
+								/>
+							}
+						/>
+					</NavLink>
 				</li>
 			</ul>
+			<button onClick={() => signOutUser()}>
+				{Object.keys(user).length !== 0 && "Sign out"}
+			</button>
 		</div>
 	);
 };
@@ -87,8 +130,11 @@ const Title = () => {
 	return (
 		<h1>
 			<NavLink to="/">
-				<span style={{ color: " #2c3e50" }}>
-					Food<span style={{ color: "#e67e22" }}>OOSH</span>
+				<span style={{ color: " #2c3e50" }} className="font-bold text-2xl">
+					Food
+					<span style={{ color: "#e67e22" }} className="font-bold text-2xl">
+						OOSH
+					</span>
 				</span>
 			</NavLink>
 		</h1>

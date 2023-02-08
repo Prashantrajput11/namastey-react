@@ -20,15 +20,21 @@ import OffersScreen from "./src/screens/OffersScreen";
 import Header from "./src/components/Header";
 import RestaurantMenuScreen from "./src/screens/RestaurantMenuScreen";
 import SignInScreen from "./src/screens/SignInScreen";
+import CartScreen from "./src/screens/CartScreen";
+
+// store imports
+import store from "./src/store/store";
+import { Provider } from "react-redux";
+import FavouriteRestaurantScreen from "./src/screens/FavouriteRestaurantScreen";
 
 // component
 
 const AppLayout = () => {
 	return (
-		<>
+		<Provider store={store}>
 			<Header />
 			<Outlet />
-		</>
+		</Provider>
 	);
 };
 const appRoute = createBrowserRouter([
@@ -41,6 +47,11 @@ const appRoute = createBrowserRouter([
 				path: "/",
 				element: <LandingScreen />,
 			},
+
+			{
+				path: "/fav",
+				element: <FavouriteRestaurantScreen />,
+			},
 			{
 				path: "/help",
 				element: <HelpScreen />,
@@ -52,6 +63,10 @@ const appRoute = createBrowserRouter([
 			{
 				path: "/sign",
 				element: <SignInScreen />,
+			},
+			{
+				path: "/cart",
+				element: <CartScreen />,
 			},
 			{
 				path: "/restaurant/:id",

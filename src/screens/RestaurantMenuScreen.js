@@ -15,12 +15,39 @@ import { FaStar } from "react-icons/fa";
 import { TbDiscount2 } from "react-icons/tb";
 import useRestaurant from "../utils/hooks/useRestaurant";
 
+// Redux toolkit imports
+import { addItemToCart, addRestaurants } from "../features/cart/cartSlice";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+
+// Third party librarires
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Cta from "../components/cta";
+import FoodType from "../components/FoodType";
+
+// Custom Hooks imports
+import useItemTotal from "../utils/hooks/useItemTotal";
+import CartFallback from "../components/CartFallback";
+
 // RestaurantMenuScreen
 const RestaurantMenuScreen = () => {
+	// get cart item from redux store
+	const cartItems = useSelector((store) => store.cart.items);
+
+	// get total price for cart items
+	const getItemTotal = useItemTotal();
+
 	// extract restaurant id
 	const { id } = useParams();
 
 	const restaurant = useRestaurant(id);
+
+	const dispatch = useDispatch();
+
+	const handleAdd = (item) => {
+		dispatch(addItemToCart(item));
+	};
 
 	// Get unique meal categories
 	function getUniqueMealCategories() {
@@ -28,7 +55,7 @@ const RestaurantMenuScreen = () => {
 
 		let array = Object.values(restaurant?.menu.items);
 
-		array.map((item) => {
+		array.map((item, restaurant) => {
 			showUniqueCategories.indexOf(item.category) === -1 &&
 				showUniqueCategories.push(item.category);
 		});
@@ -183,7 +210,24 @@ const RestaurantMenuScreen = () => {
 
 											<div className="recommendedItemImageContainer">
 												<img src={URL + item.cloudinaryImageId} />
-												<button className="addCtaCart">Add</button>
+												<button
+													className="addCtaCart"
+													onClick={() => {
+														handleAdd(item);
+														toast("Item added to cart!", {
+															position: "top-right",
+															autoClose: 1000,
+															hideProgressBar: false,
+															closeOnClick: true,
+															pauseOnHover: true,
+															draggable: true,
+															progress: undefined,
+															theme: "light",
+														});
+													}}
+												>
+													Add
+												</button>
 											</div>
 										</div>
 
@@ -193,41 +237,74 @@ const RestaurantMenuScreen = () => {
 							</p>
 						</div>
 					</div>
+					{cartItems.length > 0 ? (
+						<div className="cartDetailsContainer border-green-400 border">
+							<h2 className="font-bold text-2xl">Cart </h2>
+							<p>{cartItems.length} item</p>
 
-					<div className="cartDetailsContainer">
-						<h2>Cart here</h2>
-						<div className="m_t_4 m_b_4 ">
-							<li style={{ listStyle: "none" }}>
-								from
-								<a
-									href="#"
-									style={{ textDecoration: "none", color: "#2980b9" }}
-								>
-									Om Sweets And Snacks
-								</a>
-							</li>
-						</div>
+							{cartItems.map((item) => {
+								return (
+									<div className="">
+										<div className="flex items-center mt-2 justify-between">
+											{item.isVeg ? (
+												<img
+													src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Veg_symbol.svg/1200px-Veg_symbol.svg.png"
+													style={{
+														height: "20px",
+														width: "20px",
+														marginRight: "8px",
+													}}
+												/>
+											) : (
+												<img
+													src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Non_veg_symbol.svg/2048px-Non_veg_symbol.svg.png
+														"
+													style={{
+														height: "20px",
+														width: "20px",
+														marginRight: "8px",
+													}}
+												/>
+											)}
 
-						<p className="color_light_secondary_dark fw_medium font_size_regular">
-							3 ITEMS
-						</p>
+											<p className=" w-36 text-sm">{item.name}</p>
+											<div className="px-5">
+												<Cta item={item} />
+											</div>
 
-						<div className="subTotalContainer">
-							<div>
-								<h2 className="font_size_xl m_b_8">SubTotal</h2>
-								<p className="color_light_secondary_dark">
-									Extra Charges May apply
-								</p>
+											<p className="font-thin text-sm">
+												{"₹ " + (item.price / 100) * item.itemQuantity}
+											</p>
+										</div>
+									</div>
+								);
+							})}
+							<div className="flex justify-between mt-4">
+								<p className="text-sm text-gray-500 ">Sub Total</p>
+								{"₹ " + getItemTotal()}
 							</div>
+						</div>
+					) : (
+						<div>
+							<CartFallback
+								imageSource={
+									"https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/2xempty_cart_yfxml0"
+								}
+								height={200}
+								width={200}
+								text={
+									"Good food is always cooking! Go ahead, order some yummy items from the menu."
+								}
+								textWeight={"font-light"}
 
-							<p>Rs.244</p>
+								// textWidth = {}
+							/>
 						</div>
-						<div className="checkoutCta">
-							<li>
-								<a href="#">Checkout</a>
-							</li>
-						</div>
-					</div>
+					)}
+
+					<ToastContainer />
+					{/* Same as */}
+					<ToastContainer />
 				</div>
 			</>
 		)
