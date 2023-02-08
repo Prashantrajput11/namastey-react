@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom";
 
 import useRestaurant from "../utils/hooks/useRestaurant";
 import RestaurantMenuScreen from "./RestaurantMenuScreen";
-import Cta from "../components/cta";
+import Cta from "../components/Cta";
 import CartFallback from "../components/CartFallback";
 import CheckboxCta from "../components/CheckboxCta";
 import useItemTotal from "../utils/hooks/useItemTotal";
