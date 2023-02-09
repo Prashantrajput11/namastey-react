@@ -26,7 +26,6 @@ import CartScreen from "./src/screens/CartScreen";
 import store from "./src/store/store";
 import { Provider } from "react-redux";
 import FavouriteRestaurantScreen from "./src/screens/FavouriteRestaurantScreen";
-
 // component
 
 const AppLayout = () => {

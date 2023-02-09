@@ -9,7 +9,7 @@ const SignInScreen = () => {
 
 	// Sign in user
 	supabase.auth.onAuthStateChange(async (event) => {
-		event !== "SIGNED_OUT" ? useNavigate("/") : useNavigate("/sign");
+		event !== "SIGNED_OUT" ? useNavigate("/help") : useNavigate("/sign");
 	});
 
 	async function signInWithGoogle() {

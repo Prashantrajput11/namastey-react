@@ -16,9 +16,13 @@ import { TbDiscount2 } from "react-icons/tb";
 import useRestaurant from "../utils/hooks/useRestaurant";
 
 // Redux toolkit imports
-import { addItemToCart, addRestaurants } from "../features/cart/cartSlice";
+import { addItemToCart } from "../features/cart/cartSlice";
+import { addRestaurants } from "../features/restaurant/restaurantSlice";
 import { useDispatch } from "react-redux";
+import { addUser } from "../features/user/userSlice";
 import { useSelector } from "react-redux";
+console.log({ addRestaurants });
+console.log({ addUser });
 
 // Third party librarires
 import { toast, ToastContainer } from "react-toastify";
@@ -42,6 +46,8 @@ const RestaurantMenuScreen = () => {
 	const { id } = useParams();
 
 	const restaurant = useRestaurant(id);
+
+	console.log({ restaurant });
 
 	const dispatch = useDispatch();
 
@@ -107,6 +113,13 @@ const RestaurantMenuScreen = () => {
 							</div>
 
 							<div className="verticalSeparator"></div>
+
+							<button
+								className="text-white border border-amber-300"
+								onClick={() => dispatch(addRestaurants(restaurant))}
+							>
+								ADD FAV
+							</button>
 
 							<div>
 								<p className="color_light">
