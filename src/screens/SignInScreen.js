@@ -8,14 +8,15 @@ const SignInScreen = () => {
 	console.log({ supabase });
 
 	// Sign in user
-	supabase.auth.onAuthStateChange(async (event) => {
-		event !== "SIGNED_OUT" ? useNavigate("/help") : useNavigate("/sign");
-	});
+	// supabase.auth.onAuthStateChange(async (event) => {
+	// 	event !== "SIGNED_OUT" ? useNavigate("/help") : useNavigate("/sign");
+	// });
 
 	async function signInWithGoogle() {
 		const { data, error } = await supabase.auth.signInWithOAuth({
 			provider: "google",
 		});
+		console.log(error);
 	}
 
 	return (
