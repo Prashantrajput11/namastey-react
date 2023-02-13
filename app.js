@@ -26,13 +26,21 @@ import CartScreen from "./src/screens/CartScreen";
 import store from "./src/store/store";
 import { Provider } from "react-redux";
 import FavouriteRestaurantScreen from "./src/screens/FavouriteRestaurantScreen";
+import persistStore from "redux-persist/es/persistStore";
+import { PersistGate } from "redux-persist/integration/react";
 // component
 
+// redux persist
+let persistor = persistStore(store);
+
+// App
 const AppLayout = () => {
 	return (
 		<Provider store={store}>
-			<Header />
-			<Outlet />
+			<PersistGate persistor={persistor}>
+				<Header />
+				<Outlet />
+			</PersistGate>
 		</Provider>
 	);
 };

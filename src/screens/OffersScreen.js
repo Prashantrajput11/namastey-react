@@ -16,11 +16,6 @@ import useOffers from "../utils/hooks/useOffers";
 const OffersScreen = () => {
 	const [copy, setCopy] = useState({ text: "", isCopied: false });
 
-	let tab_list_options = [
-		{ tagName: "Restaurant", id: "01" },
-		{ tagName: "offer", id: "02" },
-	];
-
 	// Get offers list
 	const offers = useOffers();
 
@@ -44,10 +39,6 @@ const OffersScreen = () => {
 					alt=""
 					style={{ height: "200px", width: "200px" }}
 				/>
-			</div>
-
-			<div class="border-b-2 border-slate-100	">
-				<Tab tabOptions={tab_list_options} />
 			</div>
 
 			<div className="couponCardContainer">

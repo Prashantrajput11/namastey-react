@@ -17,7 +17,10 @@ import useRestaurant from "../utils/hooks/useRestaurant";
 
 // Redux toolkit imports
 import { addItemToCart } from "../features/cart/cartSlice";
-import { addRestaurants } from "../features/restaurant/restaurantSlice";
+import {
+	addRestaurants,
+	removeRestaurants,
+} from "../features/restaurant/restaurantSlice";
 import { useDispatch } from "react-redux";
 import { addUser } from "../features/user/userSlice";
 import { useSelector } from "react-redux";
@@ -36,6 +39,7 @@ import CartFallback from "../components/CartFallback";
 
 // RestaurantMenuScreen
 const RestaurantMenuScreen = () => {
+	const [isFavourite, setIsFavourite] = useState(false);
 	// get cart item from redux store
 	const cartItems = useSelector((store) => store.cart.items);
 
@@ -47,12 +51,14 @@ const RestaurantMenuScreen = () => {
 
 	const restaurant = useRestaurant(id);
 
-	console.log({ restaurant });
-
 	const dispatch = useDispatch();
 
 	const handleAdd = (item) => {
 		dispatch(addItemToCart(item));
+	};
+
+	const handleFavourite = (item) => {
+		dispatch(addRestaurants(item));
 	};
 
 	// Get unique meal categories
@@ -114,13 +120,6 @@ const RestaurantMenuScreen = () => {
 
 							<div className="verticalSeparator"></div>
 
-							<button
-								className="text-white border border-amber-300"
-								onClick={() => dispatch(addRestaurants(restaurant))}
-							>
-								ADD FAV
-							</button>
-
 							<div>
 								<p className="color_light">
 									{"₹ " + restaurant.costForTwo / 100}
@@ -130,9 +129,30 @@ const RestaurantMenuScreen = () => {
 								</p>
 							</div>
 						</div>
+						{isFavourite ? (
+							<button
+								className="text-white bg-white text-black mt-2 px-2 hover:bg-slate-400"
+								onClick={() => {
+									dispatch(removeRestaurants(restaurant));
+									setIsFavourite(true);
+								}}
+							>
+								added to fav
+							</button>
+						) : (
+							<button
+								className="text-white bg-white text-black mt-2 px-2 hover:bg-slate-400"
+								onClick={() => {
+									dispatch(addRestaurants(restaurant));
+									setIsFavourite(true);
+								}}
+							>
+								add to Favourite
+							</button>
+						)}
 					</div>
 
-					<div className="restaurantDetailsOfferContainer">
+					<div className="restaurantDetailsOfferContainer relative">
 						<IconWithRightLabel
 							icon={
 								<TbDiscount2

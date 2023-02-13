@@ -19,7 +19,7 @@ const Slider = () => {
 							src={image}
 							height={"260px"}
 							width={"260px"}
-							className="m_l_24"
+							// className="m_l_24"
 						/>
 					)
 			)}

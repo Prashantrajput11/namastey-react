@@ -23,7 +23,7 @@ export default function FoodCard({
 				<p className="font-thin text-xs">{cuisines.join(", ")}</p>
 			</div>
 
-			<div className="flex items-center justify-center">
+			<div className="flex items-center ">
 				<div
 					className=" bg-emerald-300 flex   items-center justify-center text-white py-1 px-1 font-bold text-xs"
 					style={{ backgroundColor: "#48c479" }}

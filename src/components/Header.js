@@ -11,10 +11,14 @@ import IconWithRightLabel from "./IconWithRightLabel";
 
 import useGetUser from "../utils/hooks/useGetUser";
 
+import { useSelector } from "react-redux";
+
 // other config imports
 
 // Component Header
 const Header = () => {
+	const cartItems = useSelector((store) => store.cart.items);
+
 	// init local state
 	const [showDrawer, setShowDrawer] = useState(false);
 
@@ -85,7 +89,7 @@ const Header = () => {
 						style={{
 							position: "absolute",
 							top: 60,
-							right: 450,
+							right: 150,
 							backgroundColor: "orange",
 							padding: 16,
 							borderRadius: 4,
@@ -108,20 +112,27 @@ const Header = () => {
 						to="/cart"
 						style={({ isActive }) => (isActive ? activeStyle : null)}
 					>
-						<IconWithRightLabel
-							text="Cart"
-							icon={
-								<HiOutlineShoppingCart
-									style={{ height: "24px", width: "24px" }}
-								/>
-							}
-						/>
+						<div>
+							<IconWithRightLabel
+								text={"cart "}
+								icon={
+									<HiOutlineShoppingCart
+										style={{ height: "24px", width: "24px" }}
+									/>
+								}
+							/>
+							{cartItems.length > 0 ? (
+								<p className="bg-amber-500 rounded-full h-5 w-5 p-1 flex   justify-center items-center absolute top-4 ">
+									{cartItems.length}
+								</p>
+							) : null}
+						</div>
 					</NavLink>
 				</li>
 			</ul>
-			<button onClick={() => signOutUser()}>
+			{/* <button onClick={() => signOutUser()}>
 				{Object.keys(user).length !== 0 && "Sign out"}
-			</button>
+			</button> */}
 		</div>
 	);
 };
