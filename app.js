@@ -28,6 +28,7 @@ import { Provider } from "react-redux";
 import FavouriteRestaurantScreen from "./src/screens/FavouriteRestaurantScreen";
 import persistStore from "redux-persist/es/persistStore";
 import { PersistGate } from "redux-persist/integration/react";
+import PaymentSuccessfullScreen from "./src/screens/PaymentSuccessfullScreen";
 // component
 
 // redux persist
@@ -74,6 +75,10 @@ const appRoute = createBrowserRouter([
 			{
 				path: "/cart",
 				element: <CartScreen />,
+			},
+			{
+				path: "/payment",
+				element: <PaymentSuccessfullScreen />,
 			},
 			{
 				path: "/restaurant/:id",

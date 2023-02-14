@@ -38,7 +38,7 @@ const Header = () => {
 			<ul>
 				<li>
 					<NavLink
-						to="/offers"
+						to="/Offers"
 						style={({ isActive }) => (isActive ? activeStyle : null)}
 					>
 						<IconWithRightLabel
@@ -50,7 +50,7 @@ const Header = () => {
 
 				<li>
 					<NavLink
-						to="/help"
+						to="/Help"
 						style={({ isActive }) => (isActive ? activeStyle : null)}
 					>
 						<IconWithRightLabel
@@ -109,7 +109,7 @@ const Header = () => {
 
 				<li>
 					<NavLink
-						to="/cart"
+						to="/Cart"
 						style={({ isActive }) => (isActive ? activeStyle : null)}
 					>
 						<div>
