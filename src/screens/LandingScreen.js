@@ -80,8 +80,10 @@ const LandingScreen = () => {
 			// convert json to readable object
 			const json = await res.json();
 
-			const list = json.data?.cards[2]?.data?.data?.cards;
-
+			const list =
+				json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+					?.restaurants;
+			console.log("list new api", list);
 			// update  local state
 			setAllRestaurants(list);
 			setFilteredRestaurants(list);
@@ -130,9 +132,7 @@ const LandingScreen = () => {
 
 			<Slider />
 			<div className="m_t_24 px-24 flex justify-between">
-				<h2 className="font-bold text-2xl">
-					{allRestaurants.length} Restaurants
-				</h2>
+				<h2 className="font-bold text-2xl"></h2>
 
 				<div>
 					<button
@@ -180,15 +180,15 @@ const LandingScreen = () => {
 						// console.log("here", restaurant.data.id);
 						return (
 							<Link
-								to={"/restaurant/" + restaurant.data.id}
-								key={restaurant?.data?.id}
+								to={"/restaurants/" + restaurant?.info.id}
+								key={restaurant?.info?.id}
 								style={{
 									listStyleType: "none",
 									textDecoration: "none",
 									color: "inherit",
 								}}
 							>
-								<FoodCard {...restaurant?.data} />
+								<FoodCard resData={restaurant?.info} />
 							</Link>
 						);
 					})

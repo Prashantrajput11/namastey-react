@@ -81,7 +81,7 @@ const appRoute = createBrowserRouter([
 				element: <PaymentSuccessfullScreen />,
 			},
 			{
-				path: "/restaurant/:id",
+				path: "/restaurants/:id",
 				element: <RestaurantMenuScreen />,
 			},
 		],

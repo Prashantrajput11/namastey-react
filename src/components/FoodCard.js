@@ -4,23 +4,23 @@ import { FaStar } from "react-icons/fa";
 
 import { restrautList, URL } from "../config.js";
 
-export default function FoodCard({
-	name,
-	cloudinaryImageId,
-	cuisines,
-	avgRating,
-	deliveryTime,
-	costForTwoString,
-	id,
-}) {
-	console.log(cuisines);
+export default function FoodCard(props) {
+	const { resData } = props;
+	const {
+		cloudinaryImageId,
+		name,
+		avgRating,
+		cuisines,
+		costForTwo,
+		deliveryTime,
+	} = resData;
 	return (
 		<div className=" w-72 m-2 p-2 hover:scale-110 delay-400 transition-all">
 			<img src={URL + cloudinaryImageId} className="foodImage" />
 
 			<div className="py-2">
 				<p className="font-semibold">{name}</p>
-				<p className="font-thin text-xs">{cuisines.join(", ")}</p>
+				{/* <p className="font-thin text-xs">{cuisines.join(", ")}</p> */}
 			</div>
 
 			<div className="flex items-center ">
@@ -34,7 +34,7 @@ export default function FoodCard({
 				<p className="ml-2 mr-2">-</p>
 				<p className="font-thin text-xs">{deliveryTime + "minutes"}</p>
 				<p className="ml-2 mr-2 ">-</p>
-				<p className="font-thin text-xs">{costForTwoString}</p>
+				<p className="font-thin text-xs">{costForTwo}</p>
 			</div>
 
 			<div

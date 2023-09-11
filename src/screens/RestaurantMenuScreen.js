@@ -48,8 +48,12 @@ const RestaurantMenuScreen = () => {
 
 	// extract restaurant id
 	const { id } = useParams();
-
+	console.log("rest id", id);
 	const restaurant = useRestaurant(id);
+	console.log("rest", restaurant);
+
+	// const { name, cuisines, costForTwoMessage, locality, area } =
+	// 	restaurant?.cards[0]?.card?.card?.info;
 
 	const dispatch = useDispatch();
 
@@ -88,14 +92,12 @@ const RestaurantMenuScreen = () => {
 					</div>
 
 					<div className="restaurantDetails">
-						<h2 className="color_light fw_thin font_size_8xl">
-							{restaurant.name}
-						</h2>
+						<h2 className="color_light fw_thin font_size_8xl">{name}</h2>
 						<p className="m_t_16 m_b_16 color_light_secondary">
-							{restaurant.cuisines.join(", ")}
+							{cuisines.join(", ")}
 						</p>
 						<p className="color_light_secondary font_size_large">
-							{restaurant.locality + ", " + restaurant.area}
+							{locality + ", " + area}
 						</p>
 
 						<div className="restaurantDetailsFooter">
